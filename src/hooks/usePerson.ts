@@ -13,6 +13,9 @@ export default function (){
     onMounted(()=>function(){
         setSum();
     });
+
+   //  
+
     return {
         sum,getSum,setSum
     }
