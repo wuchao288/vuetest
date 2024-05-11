@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        table tr {
+            height: 22px;
+        }
+    </style>
+    <!-- <script src="./FlyWeight/js/jquery.js"></script> -->
+</head>
+<body>
+    <div class="parentDiv" style="height: 496px; width: 60%; overflow-y: auto; background-color: aqua; text-align: center;">
+        <div id="mylist" class="" style="background-color: red;">
+        	<table class ="re">
+        	</table>
+        </div>
+    </div>
+
+    <script>
+
+
+
+    var rainData = [{ "id": 1, "name": "5-(2,5-Dimethylphenoxy)-2,2-Dimethylpentanoic Acid" }, { "id": 4, "name": "5-Aminosalicylic Acid" }, { "id": 5, "name": "5-ASA" }, { "id": 7, "name": "5'-DFUR"}, {"id": 8,"name":"5-FC"}, {"id": 11,"name":"5-Fu"}, {"id": 14,"name":"6029-M"}, {"id": 15,"name":"Moxam"}, {"id": 21,"name":"654-"}, {"id": 22,"name":"654-2"}, {"id": 25,"name":"6-Aminocaproic Acid"}, {"id": 26,"name":"6-Aminopurin"}, {"id": 27,"name":"6-Amino-purin Phosphate"}, {"id": 28,"name":"6-D-Trp"}, {"id": 29,"name":" 马思平 "}, {"id": 30,"name":"6-Mercaptopurine"}, {"id": 31,"name":"6-N'- 甲基庆大霉素" }, { "id": 32, "name": "6-Purinethiol" }, { "id": 34, "name": "6-TG" }, { "id": 35, "name": "6-Tioguanine" }, { "id": 43, "name": "8-Methoxsalene" }, { "id": 44, "name": "8-Methoxypsoralen" }, { "id": 57, "name": "A-19120" }, { "id": 59, "name": "A-38579" }, { "id": 60, "name": "A-43818" }, { "id": 61, "name": "A-46745" }, { "id": 62, "name": "A-6069" }, { "id": 64, "name": "AA-149" }, { "id": 68, "name": "Abbocillin-VK" }, { "id": 69, "name": "Abbodop" }, { "id": 70, "name": "Abbokinase" }, { "id": 71, "name": "Abboticine" }, { "id": 72, "name": "Abbott-35616" }, { "id": 74, "name": "Abbott-43326" }, { "id": 75, "name": "Abbott-43818" }, { "id": 76, "name": "Abentel" }, { "id": 77, "name": "Aberet" }, { "id": 78, "name": "Abilit" }, { "id": 79, "name": "ABOB" }, { "id": 80, "name": "Aboren" }, { "id": 88, "name": "Acarbosum" }, { "id": 89, "name": "Acavyl" }, { "id": 90, "name": "Accolate" }, { "id": 91, "name": "Accuprin" }, { "id": 92, "name": "Accupro" }, { "id": 93, "name": "Accutane" }, { "id": 94, "name": "川琥宁" }, { "id": 95, "name": "Acebutololum" }, { "id": 100, "name": "Acede Salicylique" }, { "id": 105, "name": "Acemetacinum" }, { "id": 107, "name": "Acenocoumarol" }, { "id": 108, "name": "Acenocoumarolum" }, { "id": 117, "name": "1,6-Fructose-Diphosphate" }, { "id": 119, "name": "利胆素" }, { "id": 120, "name": "13057R.P" }, { "id": 122, "name": "1321TH" }, { "id": 123, "name": "13228R.P." }, { "id": 126, "name": "14-Hydroxydaunomycin" }, { "id": 127, "name": "1620RB" }, { "id": 129, "name": "明竹欣" }, { "id": 131, "name": "17β-Estradiolum" }, { "id": 132, "name": "17βOestradiol" }, { "id": 133, "name": "18-Methylnorethindrone" }, { "id": 138, "name": "1-Hexyl-Carbamoyl-5-Fluorouracil" }, { "id": 139, "name": "1M128" }, { "id": 140, "name": "1α,25-DHCC" }, { "id": 141, "name": "1α,25-Dihydroxycholecalciferol" }, { "id": 142, "name": "1α,25-DihydroxyvitaminD3" }, { "id": 143, "name": "1α,25-DiohD3" }, { "id": 144, "name": "1α-D3" }, { "id": 145, "name": "1α-HCC" }, { "id": 146, "name": "1α-Hydroxycholecalciferol" }, { "id": 147, "name": "1α-HydroxyvitamineD3" }, { "id": 148, "name": "1α-OHCC" }, { "id": 149, "name": "1α-OH-D3" }, { "id": 155, "name": "Transmetil(Ademetionine)" }, { "id": 156, "name": "SAMe" }, { "id": 157, "name": "2-Deoxycoformycin" }, { "id": 158, "name": "2-Fmpocl" }, { "id": 159, "name": "SD4" }, { "id": 162, "name": "2-Propylpentamide" }, { "id": 163, "name": "2-Propylvaeramide" }, { "id": 165, "name": "氨苄青霉素 / 舒巴克坦钠" }, { "id": 166, "name": "Natrii Lactatis" }, { "id": 169, "name": "福辛普列钠" }, { "id": 170, "name": "33-A-74" }, { "id": 171, "name": "3-Acetylaconitine" }, { "id": 173, "name": "3-Methylnirvanol" }, { "id": 177, "name": "4306CB" }, { "id": 180, "name": "4-EA" }, { "id": 182, "name": "4'-Epi-ADE"}, {"id": 184,"name":"4'-Epi-Doxorubicine" }, { "id": 185, "name": "4'-Epi-ox Farmorubicin HCl"}, {"id": 189,"name":" 赛格力 "}, {"id": 192,"name":"Acerine"}, {"id": 193,"name":"Aceroxatidine"}, {"id": 195,"name":"Aceroxatidinum"}, {"id": 196,"name":"Acertil"}, {"id": 197,"name":"Acetacrin"}, {"id": 198,"name":"Acetagastrodin"}, {"id": 199,"name":"Acetagastrodine"}, {"id": 200,"name":"Acetagastrodinum"}, {"id": 201,"name":"Acetamidopyrrolidinone"}, {"id": 202,"name":"Acetamidum"}, {"id": 203,"name":"Acetaminophen"}, {"id": 211,"name":"Acetazolamidum"}, {"id": 212,"name":"Acetein"}, {"id": 213,"name":"Acetest"}, {"id": 215,"name":"Acetic Acid Amide"}, {"id": 217,"name":"Acetohexamidum"}, {"id": 218,"name":"Acetomenadione"}, {"id": 219,"name":"Acetomenaphthone"}, {"id": 229,"name":"Acetospan"}, {"id": 236,"name":"Acetyl Spiramycin"}, {"id": 244,"name":"Acetylcysteinum"}, {"id": 251,"name":"Acetylleucomycin"}, {"id": 253,"name":"Acetylmidecamycinum"}, {"id": 257,"name":"Acetylsalicylic Acid"}, {"id": 258,"name":"Acetylspiramycinum"}, {"id": 262,"name":"Aciclovir Sodium"}, {"id": 267,"name":"Acid Aminocaproic"}, {"id": 268,"name":"Acid Aminomethylbenzoic"}, {"id": 272,"name":"Acid Chenodeoxycholic"}, {"id": 273,"name":"Acid Cholique"}, {"id": 274,"name":"Acid Cinametic"}, {"id": 279,"name":"Acid Etacrynic"}, {"id": 280,"name":"Acid Ethacrynic"}, {"id": 281,"name":"Acid Folico"}, {"id": 282,"name":"Acid Folique"}, {"id": 288,"name":"Acid Iotalamic"}, {"id": 293,"name":"Acid Nalidixic"}, {"id": 296,"name":"Acid Oleanolic"}, {"id": 298,"name":"Acid Pipemidic"}, {"id": 301,"name":"Acid Pteroyl-glutamique"}, {"id": 306,"name":"Acid Tranexamic"}, {"id": 307,"name":"Acid Valproic"}, {"id": 308,"name":"Acide Amidotrizoicum"}, {"id": 309,"name":"Acide Cinametique"}, {"id": 310,"name":"Acide Etacrynique"}, {"id": 313,"name":"Acide Iotroxique"}, {"id": 318,"name":"Acidi Acetylsalicylici"}, {"id": 321,"name":"Acidi Borici"}, {"id": 327,"name":"Acidi Salicylici"}, {"id": 331,"name":"Acido Salicilico"}, {"id": 333,"name":"Acidum Acetylsalicylicum"}, {"id": 334,"name":"Acidum Amino Caproicum"}, {"id": 335,"name":"Acidum Aminoaceticum"}, {"id": 336,"name":"Acidum Aminoacetis"}, {"id": 340,"name":"Acidum Boris"}, {"id": 341,"name":"Acidum Caffeicum"}, {"id": 346,"name":"Acidum Folis"}, {"id": 352,"name":"Acidum Iopanois"}, {"id": 359,"name":"Acidum Nicotinis"}, {"id": 362,"name":"Acidum Para-Aminomethylbenzoicum"}, {"id": 364,"name":"Acidum Ribonu Cleicum"}, {"id": 365,"name":"Acidum Ribonucleis"}, {"id": 366,"name":"Acidum Salicylicum"}, {"id": 367,"name":"Acidum Tiaprofenis"}, {"id": 369,"name":"Acidum Ursodesoxycholicum"}, {"id": 370,"name":"Acidumγ-Aminobutyris"}, {"id": 371,"name":"Acignost"}, {"id": 372,"name":"Acipimoxum"}, {"id": 376,"name":"Aclacinomycin"}, {"id": 377,"name":"Aclacinomycin A"}, {"id": 378,"name":"Aclacinomycin A Hydrochloride"}, {"id": 379,"name":"Aclacinomycin B Hydrochloride"}, {"id": 380,"name":"Aclacinomycine"}, {"id": 381,"name":"Aclacinon"}, {"id": 382,"name":"Aclacinon HCl"}, {"id": 383,"name":"Aclarubicin A"}, {"id": 385,"name":"Aclarubicinum"}, {"id": 387,"name":"Ampicillin Sodium/Sulbactam Sodium Combination"}, {"id": 440,"name":" 费定 "}, {"id": 441,"name":" 苯磺酸阿曲可宁 "}, {"id": 442,"name":" 多瑞吉 "}, {"id": 444,"name":" 头孢美他唑 "}, {"id": 445,"name":" 盐酸速溶表阿霉素 "}, {"id": 447,"name":" 泽它 "}, {"id": 449,"name":" 止痛灵 "}, {"id": 451,"name":" 蔗糖硫酸酯铝 "}, {"id": 452,"name":" 镇痛醚 "}, {"id": 453,"name":" 正太霉素 "}, {"id": 454,"name":" 正泰霉素 "}, {"id": 456,"name":" 竹桃霉素四乙酰酯 "}, {"id": 457,"name":" 占替诺烟酸盐 "}, {"id": 460,"name":" 重碳酸钠 "}, {"id": 461,"name":" 镇痛新 "}, {"id": 464,"name":" 再欣 "}, {"id": 468,"name":" 扎西胞苷 "}, {"id": 470,"name":" 右旋布诺洛尔 "}, {"id": 472,"name":" 止血定 "}, {"id": 473,"name":" 右旋蛋氨酸 "}, {"id": 475,"name":" 右旋多巴加苄丝肼 "}, {"id": 476,"name":" 右旋多巴 / 羟苄丝肼 "}, {"id": 477,"name":" 右旋丁萘酮心安 "}, {"id": 478,"name":" 止血芳酸 "}, {"id": 479,"name":" 右旋甘氨酸 "}, {"id": 480,"name":" 右旋谷氨酸 "}, {"id": 482,"name":"Swashes"}, {"id": 483,"name":" 周效磺胺 "}, {"id": 486,"name":" 止血环酸 "}, {"id": 487,"name":" 右旋精氨酸 "}, {"id": 489,"name":" 右旋甲丙嗪 "}, {"id": 490,"name":" 中性精蛋白锌胰岛素 "}, {"id": 491,"name":" 右旋 18 甲基炔诺酮 "}, {"id": 492,"name":" 右旋甲基炔诺酮 "}, {"id": 493,"name":" 右旋甲基炔诺孕酮 "}, {"id": 495,"name":" 右旋甲炔诺酮 "}, {"id": 496,"name":" 右旋甲状腺素 "}, {"id": 497,"name":" 右旋甲状腺素钠 "}, {"id": 498,"name":" 右旋抗坏血酸 "}, {"id": 502,"name":" 右旋赖氨酸单盐酸盐 "}, {"id": 504,"name":" 增效联磺 "}, {"id": 506,"name":" 止血敏 "}, {"id": 507,"name":" 右旋门冬酰氨酶 "}, {"id": 508,"name":" 右旋门冬酰胺酶 "}, {"id": 509,"name":" 右旋霉素 "}, {"id": 511,"name":" 右旋咪唑盐酸盐 "}, {"id": 514,"name":"SA2"}, {"id": 517,"name":" 右旋驱虫净 "}, {"id": 519,"name":" 右旋溶肉瘤素 "}, {"id": 520,"name":" 右旋溶血瘤素 "}, {"id": 521,"name":" 中性人胰岛素 "}, {"id": 522,"name":" 右旋色氨酸 "}, {"id": 526,"name":" 右旋四碘甲状腺原氨酸钠 "}, {"id": 527,"name":" 右旋四咪唑 "}, {"id": 528,"name":" 右旋四氢巴马汀 "}, {"id": 530,"name":" 右旋四氢掌叶防己碱 "}, {"id": 532,"name":" 扎西他滨 "}, {"id": 534,"name":" 右旋天门冬酰胺酶 "}, {"id": 537,"name":" 右旋氧氟沙星 "}, {"id": 538,"name":" 右旋延胡索乙素 "}, {"id": 546,"name":" 足叶草乙甙 "}, {"id": 547,"name":" 右氧氟沙星 "}, {"id": 549,"name":" 障眼明 "}, {"id": 551,"name":" 助孕素 "}, {"id": 552,"name":" 足叶噻吩甙 "}, {"id": 553,"name":" 助孕酮 "}, {"id": 554,"name":" 足叶乙代 "}, {"id": 555,"name":" 足叶乙甙 "}, {"id": 556,"name":" 足叶乙甙表鬼臼毒甙 "}, {"id": 560,"name":" 重组α-2a 干扰素 "}, {"id": 564,"name":" 重组人白介素 - 2"}, {"id": 565,"name":" 重组人白细胞介素 - 2"}, {"id": 567,"name":" 重组人粒细胞集落刺激因子 (大肠杆菌)"}, {"id": 569,"name":" 重质氧化镁 "}, {"id": 571,"name":" 乙酰水杨酸锌 "}, {"id": 572,"name":" 必理能 "}, {"id": 574,"name":" 易心通 "}, {"id": 576,"name":" 右旋糖酐 (微分子)"}, {"id": 578,"name":" 右旋糖酐 - 10"}, {"id": 579,"name":" 右旋糖酐 - 40"}, {"id": 581,"name":" 右旋糖酐 - 70"}, {"id": 582,"name":" 乐朗 "}, {"id": 585,"name":" 莱美兴 "}, {"id": 586,"name":" 亚硝戊酯 "}, {"id": 589,"name":" 银杏叶黄酮甙 "}, {"id": 590,"name":" 右旋异可利定 "}, {"id": 592,"name":"Ampicillin Sodium/Sulbactam Sodium"}, {"id": 593,"name":" 万艾可 "}, {"id": 597,"name":" 乙酰氧肟酸 "}, {"id": 598,"name":"17α- 己酰氧孕酮 "}, {"id": 599,"name":" 银杏叶总黄酮 "}, {"id": 600,"name":" 银杏叶制剂 "}, {"id": 601,"name":" 乙酰竹桃霉素 "}, {"id": 606,"name":" 乙氧苯酰胺 "}, {"id": 611,"name":"Viagra"}, {"id": 613,"name":" 盐酸格雷西龙 "}, {"id": 614,"name":" 一氧化二氮 "}, {"id": 616,"name":" 异烟肼对氨基水杨酸盐 "}, {"id": 617,"name":" 药用洁而乐 "}, {"id": 619,"name":" 医用酒精 "}, {"id": 623,"name":" 异烟肼 - 利福平 "}, {"id": 624,"name":" 益压利 "}, {"id": 625,"name":" 药用赖氨酸 "}, {"id": 626,"name":" 药用氯化钾 "}, {"id": 627,"name":" 药用硫酸镁 "}, {"id": 628,"name":" 异烟脲 "}, {"id": 629,"name":" 愈疡宁 "}, {"id": 630,"name":" 药用柠檬酸钙 "}, {"id": 631,"name":" 乙氧萘青霉素 "}, {"id": 632,"name":" 乙氧萘青霉素钠 "}];
+        
+    
+    //用于创建滚动条
+        var bar = document.querySelector('.parentDiv');
+        //填充parentDiv,根据数据总数量计算填充高度
+        var _tb = document.getElementById('mylist');
+        var tab = document.querySelector('.re');
+
+        //每一行占用高度
+        var itemSize = 22;
+        //总数据占用高度
+        var totalHeight = rainData.length * itemSize + itemSize *3;
+        _tb.style.height = totalHeight + "px";
+        _tb.style.overflowY = 'hidden';
+        _tb.style.overflowX = 'visible';
+        loadDataListF(rainData, 0, 20);
+
+        //给滚动条绑定滚动的事件监听
+        bar.addEventListener('scroll', () => {
+            //滚动条所在高度
+            var top = bar.scrollTop;
+            //计算表格相对高度
+            // tab.style.cssText = 'margin-top:' + top + 'px'; // !important
+            //设置填充调度为总高度-滚动条高度，因为一部分高度被margin-top占用
+            // _tb.style.height = (totalHeight - top) + "px";
+            tab.style.transform = 'translateY(' + top +'px)';
+            
+            //根据滚动条高度计算数据所在行
+            var startIndex = Math.floor(top / itemSize);
+            //更新表格，只渲染画面中dom
+            if ((startIndex + 20) < rainData.length){
+                loadDataList(rainData, startIndex,startIndex + 20);
+            }else{
+                if (startIndex < rainData.length){
+                    loadDataList(rainData, startIndex,rainData.length);
+                }
+            }
+        });
+
+        function loadDataList(datas,startIndex,endIndex){
+            dat = datas.slice(startIndex,endIndex);
+            var headName = getObjectKeys(dat[0]);
+            var tbody_tr = tab.children[1].children;
+            for(var i = 0; i < dat.length; i++){
+                for(var j = 0; j < headName.length; j++){
+                    tbody_tr[i].children[j].innerText = dat[i][headName[j]];
+                }
+            }
+        }
+        
+        //js获取对象,数组所有属性键值(key)和对应值(value):写成标准的方法(数组是object的一种)：
+        function getObjectKeys(object)
+        {
+            var keys = [];
+            for (var property in object)
+            keys.push(property);
+            return keys;
+        }
+        
+        function getObjectValues(object)
+        {
+            var values = [];
+            for (var property in object)
+            values.push(object[property]);
+            return values;
+        }
+
+        function loadDataListF(datas,startIndex,endIndex){
+            dat = datas.slice(startIndex,endIndex);
+            var maxRow = dat.length;
+            var headName = dat[0];
+            var strTbody = ["<thead><tr>"];
+            for(let m in headName){
+                strTbody.push("<th>"+ m +"</th>");
+            }
+            strTbody.push("</tr></thead><tbody>");
+            for(var i = 0; i < maxRow; i++){
+                strTbody.push("<tr>");
+                for(var j in headName){
+                    strTbody.push("<td>"+ dat[i][j] +"</td>");
+                }
+                strTbody.push("</tr>");
+            }
+            strTbody.push("</tbody>");
+            // var obj = document.getElementById("tableDiv");
+            tab.innerHTML = strTbody.join("");
+        }
+
+        function createTab(dat){
+            var maxRow = dat.length;
+            var maxCol = dat[0].length;
+            var strTbody = ["<table border='1'><tbody>"];
+            for(var i = 0; i < maxRow; i++){
+                strTbody.push("<tr>");
+                for(var j = 0; j < maxCol; j++){
+                    strTbody.push("<td>"+ dat[i][j] +"</td>");
+                }
+                strTbody.push("</tr>");
+            }
+            strTbody.push("</tbody></table>");
+            var obj = document.getElementById("tableDiv");
+            obj.innerHTML = strTbody.join("");
+        }
+    </script>
+</body>
+</html>

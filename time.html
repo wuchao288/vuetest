@@ -1,0 +1,62 @@
+
+// 获取员工列表
+getUserList() {
+  this.loading = true
+  this.getRequest()(this.getParams())
+    .then(res => {
+
+        this.loading = false;
+        var self = this;
+
+        console.log(res.data);
+
+        let timeChunk = function(ary, fn, count) {
+          let obj;
+          let start = function() {
+              for (let i = 0; i < Math.min(count||1, ary.length); i++) {
+                  obj = ary.shift();
+                  fn(obj);
+              }
+          };
+          return function() {
+              let t = setInterval(function() {
+                  // console.log("setInterval handler...");
+                  // 如果全部任务结束
+                  if (ary.length === 0) {
+                      return clearInterval(t);
+                  }
+                  start();
+                  // 分批执行的时间间隔
+              }, 200);
+              return t;
+          };
+        };
+
+        var renderUsers = timeChunk(res.data, function(item) {
+            // console.log(item);
+            item.disabled = false; // 要求单选
+            item.show = true;
+            if (self.selectedData.length > 0) {
+                let disabled = true;
+                for (let index = 0; index < self.selectedData.length; index++) {
+                    const element = self.selectedData[index];
+                    if (element.id === item.id) {
+                        disabled = false;
+                        self.selectItems.push(item)
+                    }
+                }
+                if (self.radio) {
+                    item.disabled = disabled
+                }
+            }
+            self.list.push(item);
+        }, 10);
+        self.timer = renderUsers();
+        console.log("timer="+self.timer);
+        // 释放ajax返回数据
+        res.data = null;
+    })
+    .catch(() => {
+      this.loading = false
+    });
+}
